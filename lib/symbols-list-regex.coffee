@@ -98,3 +98,22 @@ module.exports =
                 anchor:   /^[ ]*(.+)\s*:\s*:\s*enum\s*(?:[\{])/gmi               # enum
                 function: /^[ ]*(.+)\s*:\s*:\s*proc\s*(?:[\{\(])/gmi             # proc
                 methode_statique: /^[ ]*(.+)\s*:\s*:\s*(?:[\"\'0-9])/gmi         # const
+        ts:
+            regex:
+                commentaire: /^[^\S\n]*\/\/ ! (.+)/gmi
+                commentaire_multi: /^[^\S\n]*\/\* ! (.+)[^\/]*\*\//gmi
+                class: /^[^\S\n]*(?:export )?(?:default )?class ([\w]+(?: extends [\w]+)*)/gmi
+                class_expression: /^[^\S\n]*([\w]+)\s*=\s*class\s{/gmi
+                function: /^[^\S\n]*(?:final|static|abstract|private|protected|public|async|export|[^\S\n])*function\s?([\w]+ *\([^\)]*\))(?:\s?:\s?\w)?\s?{/gmi
+                controller: /^[^\S\n]*\.controller\s*\(\s*["']+([\w]+)["']+[\s,]*function/gmi
+                method: /^[^\S\n]*(?:final|static|abstract|private|protected|public|[^\S\n])*[\s]([\w]+\((\w:[ ]\w[,])*\)\s?:\s?\w)[\s\n]*{/gmi
+                es6method: /^[^\S\n]*(?:[*][\s\n]+)?(?:async[\s\n]+)?(?!foreach|if|for|while|catch)([\w]+\(.*\))[\s\n]*{/gmi
+                es6constfunction: /^[\s]*(?:export[\s]+)?const[\s]+([\w]+)[\s]+=[\s]+\(.*\)[\s]+=>/gmi
+                constant: /^[^\S\n]*\.constant\(["']+([\w]+)["']+/gmi
+                filter: /^[^\S\n]*\.filter\(["']+([\w]+)["']+/gmi
+                structure: /^[^\S\n]*\.(config|run)\(function/gmi
+                setter: /^[^\S\n]*(?:final|static|abstract|private|protected|public|[^\S\n])*set[ ]+([^ (]+\(.*\))/gmi
+                getter: /^[^\S\n]*(?:final|static|abstract|private|protected|public|[^\S\n])*get[ ]+([^ (]+\(.*\))/gmi
+                todo: /(?:\/\*|\/\/)[ ]*TODO\:[ ]*(.+?)[ ]*(?:\*\/)?(?:[\r\n])/gmi
+                fixme: /(?:\/\*|\/\/)[ ]*FIXME\:[ ]*(.+?)[ ]*(?:\*\/)?(?:[\r\n])/gmi
+                hack: /(?:\/\*|\/\/)[ ]*HACK\:[ ]*(.+?)[ ]*(?:\*\/)?(?:[\r\n])/gmi
